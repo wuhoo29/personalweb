@@ -1,60 +1,116 @@
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <title>吳忻澂的個人網頁</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>吳忻澂的個人網頁</title>
+
+  <!-- 載入 Bootstrap 4 CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- 載入 Google 字體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
 
   <style>
-    /* 避免固定在頂部的導覽列遮擋內文 */
+    /* 全域字體設定 */
+    * {
+      font-family: "Kiwi Maru", serif, "Microsoft JhengHei", sans-serif;
+    }
+
+    /* 解決頂部導覽列遮擋內文的核心設定 */
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 75px; /* 點擊錨點跳轉時預留導覽列的高度 */
+      scroll-padding-top: 80px; /* 錨點跳轉時預留導覽列高度 */
     }
 
     body {
-      padding-top: 75px; /* 初始載入時預留導覽列的高度 */
+      padding-top: 70px; /* 初始載入預留頂部空間，避免標題被擋住 */
+      margin: 0;
     }
 
-    /* 區塊內距調整 */
+    /* 各區塊內距 */
     section {
-      padding: 30px 0;
+      padding-top: 60px;
+      padding-bottom: 60px;
     }
 
-    /* 返回頂部按鈕樣式 */
-    #BackTop {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 45px;
-      height: 45px;
-      background-color: #343a40;
-      color: #fff;
+    /* 背景顏色設定 (加入 !important 確保顏色生效) */
+    section#s1 {
+      background-color: #8297a8 !important;
+    }
+
+    section#s2 {
+      background-color: #9bb2c4 !important;
+    }
+
+    section#s3 {
+      background: linear-gradient(to right, #f7cac9 0%, #92a8d1 100%) !important;
+      padding-bottom: 80px;
+    }
+
+    section#s4 {
+      background-color: #cadbe8 !important;
+    }
+
+    /* 成員卡片文字顏色修正（避免在漸層上不明顯） */
+    .card {
+      color: #333;
       border: none;
-      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* 回到頂端按鈕樣式 */
+    .toTop-arrow {
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      border-radius: 33%;
+      opacity: 0.6;
+      background: #000;
       cursor: pointer;
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
       display: none;
       z-index: 999;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
-    #BackTop::before {
-      content: '▲';
-      font-size: 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+
+    .toTop-arrow::before, .toTop-arrow::after {
+      width: 18px;
+      height: 5px;
+      border-radius: 3px;
+      background: #f90;
+      position: absolute;
+      content: "";
+      top: 50%;
+    }
+
+    .toTop-arrow::before {
+      transform: rotate(-45deg) translateY(-50%);
+      left: 0.4rem;
+    }
+
+    .toTop-arrow::after {
+      transform: rotate(45deg) translateY(-50%);
+      right: 0.4rem;
+    }
+
+    .toTop-arrow:focus {
+      outline: none;
     }
   </style>
 </head>
 <body>
 
+<!-- 頂部固定導覽列 -->
 <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top shadow-sm">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="https://lh3.googleusercontent.com/d/1N8rfEJsVC10Pxlwm_14aFJU9xwpAMqon=w1000?authuser=0" width="40" height="40" class="d-inline-block align-top mr-2" alt="Logo">
+    <a class="navbar-brand font-weight-bold" href="#">
+      <img src="https://lh3.googleusercontent.com/d/1N8rfEJsVC10Pxlwm_14aFJU9xwpAMqon=w1000?authuser=0" width="36" height="36" class="d-inline-block align-top mr-2 rounded-circle" alt="Logo">
       吳忻澂的個人網頁
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -62,36 +118,28 @@
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#s1">個人簡介</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#s2">教學經驗</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#s3">SEVENTEEN專區</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#s4">聯絡資訊</a>
-        </li>
+        <li class="nav-item"><a class="nav-link font-weight-bold" href="#s1">個人簡介</a></li>
+        <li class="nav-item"><a class="nav-link font-weight-bold" href="#s2">教學經驗</a></li>
+        <li class="nav-item"><a class="nav-link font-weight-bold" href="#s3">SEVENTEEN專區</a></li>
+        <li class="nav-item"><a class="nav-link font-weight-bold" href="#s4">聯絡資訊</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
+<!-- 區塊 1: 個人簡介 -->
 <section id="s1">
-  <div class="container-fluid">
+  <div class="container-fluid px-4">
     <div class="row">
       <div class="col-sm-12">
-        <h1>個人簡介</h1>
-        <hr/>
+        <h1 class="text-white">個人簡介</h1>
+        <hr class="bg-white"/>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-6 text-white">
         <h3>自傳</h3>
-        <p>我是一個開朗、樂觀且好相處的人，對自己的要求是不到最後不放棄。從小生活在一個開明、總是願意傾聽我煩惱的家庭裡，使我養成了樂觀向上的性格。朋友們總說我很會鼓勵他人，讓他們對自己充滿信心，也因此收穫了不少真摯的友誼。
-        我主動且樂意學習新事物，時刻充實自己，以增加對世界的了解。在工作和完成作業上，我始終保持責任心，竭盡全力做到最好。即使遇到難題，我也會積極尋找解決方案或向同學請教，力求將完成度達到最高。</p>
+        <p style="line-height: 1.8;">我是一個開朗、樂觀且好相處的人，對自己的要求是不到最後不放棄。從小生活在一個開明、總是願意傾聽我煩惱的家庭裡，使我養成了樂觀向上的性格。朋友們總說我很會鼓勵他人，讓他們對自己充滿信心，也因此收穫了不少真摯的友誼。我主動且樂意學習新事物，時刻充實自己，以增加對世界的了解。在工作和完成作業上，我始終保持責任心，竭盡全力做到最好。即使遇到難題，我也會積極尋找解決方案或向同學請教，力求將完成度達到最高。</p>
         
-        <h3>興趣愛好</h3>
+        <h3 class="mt-4">興趣愛好</h3>
         <ul>
           <li>打排球</li>
           <li>織毛線</li>
@@ -101,8 +149,8 @@
       </div>
 
       <div class="col-sm-6">
-        <!-- 輪播 Carousel -->
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- 輪播圖片 -->
+        <div id="myCarousel" class="carousel slide shadow rounded overflow-hidden" data-ride="carousel">
           <ul class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -139,31 +187,32 @@
   </div>
 </section>
 
+<!-- 區塊 2: 教學經驗 -->
 <section id="s2">
-  <div class="container-fluid">
+  <div class="container-fluid px-4">
     <div class="row">
       <div class="col-sm-12">
-        <h1>教學經驗</h1>
-        <hr/>
+        <h1 class="text-white">教學經驗</h1>
+        <hr class="bg-white"/>
       </div>
-      <div class="col-sm-6 mb-3">
+      <div class="col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://lh3.googleusercontent.com/d/1WWV1UvhB8D2x7IWgryZMgkf4RIf5ca8Y=w1000?authuser=0" alt="數位學習志工隊">
           <div class="card-body">
-            <h4 class="card-title">數位學習志工隊</h4>
-            <h5 class="card-subtitle text-muted mb-2">隊輔</h5>
+            <h4 class="card-title font-weight-bold">數位學習志工隊</h4>
+            <h6 class="text-muted mb-2">隊輔</h6>
             <p class="card-text">
               志工隊每年寒暑假會到台灣各縣市的鄉下小學舉辦營隊，帶領小朋友學習數位學習的相關知識，例如Micro:bit的使用方法。這個營隊使我學習了如何與小朋友相處，包括根據他們的程度調整課程難度，並在他們需要協助時及時伸出援手。此外，我學會了如何平心靜氣地安撫情緒不穩定的小朋友，並鼓勵他們，讓他們在學習過程中獲得信心和成就感。
             </p>
           </div>
         </div>
       </div>
-      <div class="col-sm-6 mb-3">
+      <div class="col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://tse2.mm.bing.net/th?id=OIP.naEo8Xpk6yfySJo0xG9iEQHaE8&pid=Api&P=0&h=180" alt="永齡希望小學">
           <div class="card-body">
-            <h4 class="card-title">永齡希望小學</h4>
-            <h5 class="card-subtitle text-muted mb-2">課輔老師</h5>
+            <h4 class="card-title font-weight-bold">永齡希望小學</h4>
+            <h6 class="text-muted mb-2">課輔老師</h6>
             <p class="card-text">
               參加完志工隊後，讓我確立了想成為老師的想法，因此在我知道永齡希望小學這個機構正在招募課師時，我義無反顧的報名並認真準備了面試。
               目前正在六腳的灣內國小任職課後輔導老師，和志工隊大不相同的地方是身分的差異，在灣內國小內我扮演的是老師，而不是大姐姐，必須以嚴肅的方式教導學生們知識與管理班上的秩序。此外，因為是相對較落後於同齡孩子的學生們，往往相同的概念需要反覆講很多次，因此耐心是必不可少的。
@@ -176,230 +225,231 @@
   </div>
 </section>
 
+<!-- 區塊 3: SEVENTEEN專區 -->
 <section id="s3">
-  <div class="container-fluid">
+  <div class="container-fluid px-4">
     <div class="row">
       <div class="col-sm-12">
-        <h1>SEVENTEEN專區</h1>
-        <hr/>
+        <h1 class="text-white">SEVENTEEN專區</h1>
+        <hr class="bg-white"/>
       </div>
 
       <div class="col-sm-12 mb-4">
-        <h3>THUNDER</h3>
-        <div class="embed-responsive embed-responsive-16by9">
+        <h3 class="text-white">THUNDER</h3>
+        <div class="embed-responsive embed-responsive-16by9 shadow rounded">
           <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/pS57UX6s-xw?si=rxQvxzfJxeysmifU" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
 
-      <!-- 成員卡片列表 -->
-      <div class="col-sm-3 mb-4">
+      <!-- 13 位成員卡片 -->
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://d1b8dyiuti31bx.cloudfront.net/NewsPhotos/20240301/174_085203395292.jpg" alt="S.coups">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">S.coups</h4>
-            <p class="card-text">崔勝哲</p>
-            <ul>
+            <p class="text-muted">崔勝哲</p>
+            <ul class="pl-3 mb-3">
               <li>總管隊長</li>
               <li>Hip-hop Team隊長</li>
             </ul>
-            <a href="https://www.instagram.com/sound_of_coups/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/sound_of_coups/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLKnEkhEUV4_aCPbzJNHHMTdXj83gAMHdYog&s" alt="Jeong Han">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">Jeong Han</h4>
-            <p class="card-text">尹淨漢</p>
-            <ul>
+            <p class="text-muted">尹淨漢</p>
+            <ul class="pl-3 mb-3">
               <li>Vocal Team成員</li>
               <li>JxW成員</li>
             </ul>
-            <a href="https://www.instagram.com/jeonghaniyoo_n" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/jeonghaniyoo_n" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://p0.itc.cn/images01/20230819/5487c09351ac458996beeba906f7247b.jpeg" alt="Joshua">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">Joshua</h4>
-            <p class="card-text">洪知秀</p>
-            <ul>
+            <p class="text-muted">洪知秀</p>
+            <ul class="pl-3 mb-3">
               <li>Vocal Team成員</li>
             </ul>
-            <a href="https://www.instagram.com/joshu_acoustic/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/joshu_acoustic/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSp3k_qy8xv_7qPS34PKIcAn6zObll59DZvA&s" alt="Jun">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">Jun</h4>
-            <p class="card-text">文俊輝</p>
-            <ul>
+            <p class="text-muted">文俊輝</p>
+            <ul class="pl-3 mb-3">
               <li>Performance Team成員</li>
             </ul>
-            <a href="https://www.instagram.com/junhui_moon/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/junhui_moon/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://tw.wowkorea.live/img/topic/25/129945/268254_1280W.webp" alt="Hoshi">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">Hoshi</h4>
-            <p class="card-text">權順榮</p>
-            <ul>
+            <p class="text-muted">權順榮</p>
+            <ul class="pl-3 mb-3">
               <li>Performance Team隊長</li>
               <li>BSS(夫碩順)成員</li>
             </ul>
-            <a href="https://www.instagram.com/ho5hi_kwon/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/ho5hi_kwon/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMR2ixeUsFDMywq7U0To7qC1g3AiStON3xdQ&s" alt="Wonwoo">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">Wonwoo</h4>
-            <p class="card-text">全圓佑</p>
-            <ul>
+            <p class="text-muted">全圓佑</p>
+            <ul class="pl-3 mb-3">
               <li>Hip-hop Team成員</li>
               <li>JxW成員</li>
             </ul>
-            <a href="https://www.instagram.com/everyone_woo/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/everyone_woo/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://i.pinimg.com/736x/08/88/af/0888afd7e5d452d7889d3b0c012fce0c.jpg" alt="Woozi">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">Woozi</h4>
-            <p class="card-text">李知勳</p>
-            <ul>
+            <p class="text-muted">李知勳</p>
+            <ul class="pl-3 mb-3">
               <li>Vocal Team隊長</li>
               <li>SEVENTEEN專輯製作人</li>
             </ul>
-            <a href="https://www.instagram.com/woozi_universefactory/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/woozi_universefactory/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://p1.music.126.net/yX6bzqj_gc1OUBsQuZ-Qpg==/109951166697681727.jpg?imageView=1&type=webp&thumbnail=985x0" alt="The 8">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">The 8</h4>
-            <p class="card-text">徐明浩</p>
-            <ul>
+            <p class="text-muted">徐明浩</p>
+            <ul class="pl-3 mb-3">
               <li>Performance Team成員</li>
             </ul>
-            <a href="https://www.instagram.com/xuminghao_o/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/xuminghao_o/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-vSX7xo6sfJR9VUNp1zVO2JhAGCJ466pD9A&s" alt="Mingyu">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">Mingyu</h4>
-            <p class="card-text">金珉奎</p>
-            <ul>
+            <p class="text-muted">金珉奎</p>
+            <ul class="pl-3 mb-3">
               <li>Hip-hop Team成員</li>
             </ul>
-            <a href="https://www.instagram.com/min9yu_k/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/min9yu_k/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe3dqgkdcY1LKzO47BVY8XV0xu-8wXS0mKPQ&s" alt="DK">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">DK</h4>
-            <p class="card-text">李碩珉</p>
-            <ul>
+            <p class="text-muted">李碩珉</p>
+            <ul class="pl-3 mb-3">
               <li>Vocal Team成員</li>
               <li>BSS(夫碩順)隊長</li>
             </ul>
-            <a href="https://www.instagram.com/dk_is_dokyeom/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/dk_is_dokyeom/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/1/15/Seungkwan_Follow.png" alt="Seungkwan">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">Seungkwan</h4>
-            <p class="card-text">夫勝寛</p>
-            <ul>
+            <p class="text-muted">夫勝寛</p>
+            <ul class="pl-3 mb-3">
               <li>Vocal Team成員</li>
               <li>BSS(夫碩順)成員</li>
             </ul>
-            <a href="https://www.instagram.com/pledis_boos/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/pledis_boos/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBs_QuBrV95pWKfy-jRF4HOwZ_0hqeoUYFfg&s" alt="Vernon">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">Vernon</h4>
-            <p class="card-text">崔瀚率</p>
-            <ul>
+            <p class="text-muted">崔瀚率</p>
+            <ul class="pl-3 mb-3">
               <li>Hip-hop Team成員</li>
             </ul>
-            <a href="https://www.instagram.com/vernonline/" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/vernonline/" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-3 mb-4">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/1/16/Dino_Seventeen_240127.png" alt="Dino">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h4 class="card-title">Dino</h4>
-            <p class="card-text">李燦</p>
-            <ul>
+            <p class="text-muted">李燦</p>
+            <ul class="pl-3 mb-3">
               <li>Performance Team成員</li>
             </ul>
-            <a href="https://www.instagram.com/feat.dino" target="_blank" class="btn btn-primary btn-block">IG</a>
+            <a href="https://www.instagram.com/feat.dino" target="_blank" class="btn btn-primary btn-block mt-auto">IG</a>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
+<!-- 區塊 4: 聯絡資訊 -->
 <section id="s4">
-  <div class="container-fluid">
+  <div class="container-fluid px-4">
     <div class="row">
       <div class="col-sm-12">
-        <h1>聯絡資訊</h1>
-        <hr/>
+        <h1 class="text-dark">聯絡資訊</h1>
+        <hr class="bg-dark"/>
       </div>
-      <div class="col-sm-4">
-        <h5>吳忻澂</h5>
-        <p>Phone: 0972709510</p>
-        <p>Mailbox：abc123pp12345@gmail.com</p>
-        <p>School：國立嘉義大學-民雄校區</p>
+      <div class="col-sm-4 text-dark font-weight-bold">
+        <h4>吳忻澂</h4>
+        <p class="mt-3">📞 Phone: 0972709510</p>
+        <p>✉️ Mailbox: abc123pp12345@gmail.com</p>
+        <p>🏫 School: 國立嘉義大學-民雄校區</p>
       </div>
       <div class="col-sm-8">
-        <div class="embed-responsive embed-responsive-16by9">
+        <div class="embed-responsive embed-responsive-16by9 shadow rounded">
           <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.71506088132!2d120.42379119999998!3d23.5427487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346ebdfae88ae0d7%3A0x7cf66184cbfb07f3!2z5ZyL56uL5ZiJ576p5aSn5a245rCR6ZuE5qCh5Y2A!5e0!3m2!1szh-TW!2stw!4v1749451695827!5m2!1szh-TW!2stw" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
@@ -408,21 +458,29 @@
 </section>
 
 <!-- 回到頂端按鈕 -->
-<button type="button" id="BackTop" title="回到頂端"></button>
+<button type="button" id="BackTop" class="toTop-arrow" title="回到頂部"></button>
+
+<!-- 載入必要 JS (jQuery、Popper、Bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-$(function(){
+$(document).ready(function(){
+  // 點擊返回頂部
   $('#BackTop').click(function(){
-    $('html,body').animate({scrollTop: 0}, 333);
+    $('html, body').animate({scrollTop: 0}, 333);
+    return false;
   });
-  
+
+  // 滾動超過 300px 時顯示按鈕
   $(window).scroll(function() {
     if ($(this).scrollTop() > 300){
       $('#BackTop').fadeIn(222);
     } else {
       $('#BackTop').stop().fadeOut(222);
     }
-  }).scroll();
+  });
 });
 </script>
 

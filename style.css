@@ -75,3 +75,66 @@ section#s4 {
 .toTop-arrow:focus {
   outline: none;
 }
+/* 浮動小寵物/掛件容器 */
+.floating-widget {
+  position: fixed;
+  right: 25px;          /* 距離右邊距離，改 left: 25px 則靠左 */
+  bottom: 100px;        /* 距離底部高度（避開回到頂端按鈕） */
+  z-index: 998;
+  cursor: pointer;
+  animation: floatUpDown 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+/* 上下漂浮動畫 */
+@keyframes floatUpDown {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* 滑鼠滑過時微放大 */
+.floating-widget:hover {
+  animation-play-state: paused; /* 滑過去時暫停飄動 */
+  transform: scale(1.1);
+}
+
+/* 小掛件的圖示/圖片樣式 */
+.floating-widget img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 3px solid #f7cac9; /* 玫瑰石英粉邊框 */
+  box-shadow: 0 4px 15px rgba(146, 168, 209, 0.6); /* 寧靜藍光暈 */
+  background-color: #fff;
+  object-fit: cover;
+}
+
+/* 滑鼠移過去顯示的對話氣泡提示 */
+.floating-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  right: 75px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: opacity 0.3s, visibility 0.3s;
+  pointer-events: none;
+}
+
+.floating-widget:hover .floating-tooltip {
+  visibility: visible;
+  opacity: 1;
+}

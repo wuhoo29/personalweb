@@ -1,63 +1,77 @@
 @import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
-*{
-/*   border: solid 1px black; */
-   font-family: "Kiwi Maru", serif;
+
+* {
+  font-family: "Kiwi Maru", serif;
 }
-/* .navbar-nav{
-  margin-left: 200px;
-} */
-.container{
-  padding-top: 80px;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 75px;
 }
-.ncyu{
+
+body {
+  padding-top: 75px;
+}
+
+section {
   padding-top: 50px;
+  padding-bottom: 50px;
 }
-section{
-  padding-top: 130px;
+
+section#s1 {
+  background-color: #8297a8 !important;
 }
-section#s1{
-  background-color: #8297a8;
+
+section#s2 {
+  background-color: #9bb2c4 !important;
 }
-section#s2{
-  background-color: #9bb2c4;
-}
-section#s3{
-  background: linear-gradient(to right,#f7cac9 0%,#92a8d1 100%);
+
+section#s3 {
+  background: linear-gradient(to right, #f7cac9 0%, #92a8d1 100%) !important;
   padding-bottom: 100px;
 }
-section#s4{
-  background-color: #cadbe8;
+
+section#s4 {
+  background-color: #cadbe8 !important;
 }
-/* 40px */
+
+/* 回到頂端箭頭 */
 .toTop-arrow {
-width: 2.5rem;
-height: 2.5rem;
-padding: 0;
-margin: 0;
-border: 0;
-border-radius: 33%;
-opacity: 0.6;
-background: #000;
-cursor: pointer;
-position:fixed;
-right: 1rem;
-bottom: 1rem;
-display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 33%;
+  opacity: 0.6;
+  background: #000;
+  cursor: pointer;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: none;
+  z-index: 999;
 }
+
 .toTop-arrow::before, .toTop-arrow::after {
-width: 18px;
-height: 5px;
-border-radius: 3px;
-background: #f90;
-position: absolute;
-content: "";
+  width: 18px;
+  height: 5px;
+  border-radius: 3px;
+  background: #f90;
+  position: absolute;
+  content: "";
 }
+
 .toTop-arrow::before {
-transform: rotate(-45deg) translate(0, -50%);
-left: 0.5rem;
+  transform: rotate(-45deg) translate(0, -50%);
+  left: 0.5rem;
 }
+
 .toTop-arrow::after {
-transform: rotate(45deg) translate(0, -50%);
-right: 0.5rem;
+  transform: rotate(45deg) translate(0, -50%);
+  right: 0.5rem;
 }
-.toTop-arrow:focus {outline: none;}
+
+.toTop-arrow:focus {
+  outline: none;
+}
